@@ -5,8 +5,8 @@
 
 struct response_status {
     bool error;
-    long status_code;
-    int duration_ms;
+    unsigned long status_code;
+    unsigned int duration_ms;
 };
 
 // Internal stuff
