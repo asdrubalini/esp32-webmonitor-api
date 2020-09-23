@@ -9,7 +9,10 @@ struct response_status {
     int duration_ms;
 };
 
+// Internal stuff
 size_t write_data(void *buffer, size_t size, size_t nmemb, void *userp);
+
+// Send HTTP GET request to url and return response_status struct
 response_status request_get_status(char* url);
 
 #endif // REQUEST_H

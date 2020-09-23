@@ -8,7 +8,7 @@
 #include "request.h"
 
 #define LISTEN_PORT 8080
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 128 // bytes
 
 
 int main() {
@@ -20,6 +20,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    // Listen on all interfaces
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(LISTEN_PORT);
@@ -38,11 +39,14 @@ int main() {
     // Allocate buffer memory
     char *buffer = (char *) calloc(BUFFER_SIZE, sizeof (char));
 
+    // Client address
     struct sockaddr_in client_addr;
     auto client_addr_length = sizeof (client_addr);
 
+    // Client socket fd
     int client_sock;
 
+    // Server loop
     while (true) {
         client_sock = accept(sock_fd, (struct sockaddr *) &client_addr, (socklen_t*) &client_addr_length);
 
@@ -112,13 +116,6 @@ int main() {
     // Cleanup
     free(buffer);
     close(sock_fd);
-   
-
-    // auto response_status = request_get_status("https://insegreto.com/it/fresh");
-
-    // std::cout << response_status.error << std::endl;
-    // std::cout << response_status.status_code << std::endl;
-    // std::cout << response_status.duration_ms << std::endl;
 
     return 0;
 }

@@ -17,6 +17,7 @@ response_status request_get_status(char* url) {
     curl = curl_easy_init();
 
     if (curl) {
+        // Set request parameters
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
         curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
